@@ -1,0 +1,30 @@
+SocketExample
+
+a)	
+  1.	MyServer uses java.net.ServerSocket to start as a server. 
+  2.	MyClient uses java.net.socket to start and gives address and port.
+  3 .	MyServer uses java.net.ServerSocket.accept() to connect and accept the MyClient.
+    i.	Once both MyServer and MyClient runs
+      a.	MyServer displays in String: “Connected”
+      b.	MyServer waits for MyClient (terminal) to type in input
+  4.	From MyClient when user types in the input, MyClient uses java.util.Scanner.Scanner(InputStream source) to convert bytes into platform’s default charset. This is saved in ‘scanner’.
+  5.	MyClient uses java.io.DataOutputStream.DataOutputStream(OutputStream out) to save the data temporally for later use. MyClient also uses java.net.Socket.getOutputStream() to return output stream for writing bytes into socket, which is the data that is going to be saved. All of these are saved in ‘out’.
+  6.	MyClient sends the input that user has types with out.writeUTF(line). It takes in parameter in string.
+  7.	MyServer brings the input that was typed from MyClient by socket.getInputStream(). It brings the data in byte form.
+  8.	MyServer reads the input and changes the data type into string form using in.readUTF() and temporally save the data into ‘line’. __.readUTF() is called from java.io.DataInputStream.
+  9.	If client types in ‘Over’
+    i.	MyClient uses ___.close() method to close the connection.
+      a.	scanner.close() calls from java.util.Scanner.close()
+      b.	out.close() calls from java.ioFilterOutputStream.close()
+      c.	socket.close() calls from java.net.Socket.close()
+  ii.	MyServer uses ___.close() method to close the connection.
+      a.	socket.close() calls from java.net.Socket.close()
+      b.	in.close() calls from java.io.FilterInputStream.close()
+
+b)	
+  1.	MyClient uses Scanner(System.in) to take in the client’s string form data and changes into Byte form.
+  2.	MyClient then uses out.writeUTF(line) to send the data to MyServer in byte form.
+  3.	MyServer uses in = new DataInputStream(new BufferedInputStream(socket.getInputStream())) to bring in the data. 
+    i.	socket.getInputStream() is used to bring data in stream in reading byte.
+    ii.	BufferedInputStream() is used to save data in internal array form of buf.
+  4.	MySerever uses in.readUTF() reads the data of byte form and changes into Unicode string.
