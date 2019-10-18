@@ -17,7 +17,7 @@ a)
       a.	scanner.close() calls from java.util.Scanner.close()
       b.	out.close() calls from java.ioFilterOutputStream.close()
       c.	socket.close() calls from java.net.Socket.close()
-  ii.	MyServer uses ___.close() method to close the connection.
+    ii.	MyServer uses ___.close() method to close the connection.
       a.	socket.close() calls from java.net.Socket.close()
       b.	in.close() calls from java.io.FilterInputStream.close()
 
